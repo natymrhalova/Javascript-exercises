@@ -1,10 +1,9 @@
 //Exercises sourced from https://www.w3resource.com/javascript-exercises/javascript-basic-exercises.php
-
+const date = new Date();
+const body = document.body;
 /*1. Write a JavaScript program to display the current day and time in the following format.Go to the editor
 Sample Output: Today is: Tuesday.
 Current time is: 10 PM: 30 : 38*/
-
-const date = new Date();
 let day = date.getDay() - 1;
 let hours = date.getHours();
 let minutes = date.getMinutes();
@@ -33,30 +32,21 @@ reset.addEventListener("click", () => {
 
 //New date variable created solely for the purpose of an exercise number 3
 //3. Write a JavaScript program to calculate days left until next Christmas.
-const another_date = new Date();
-let today = another_date.getTime();
-let another_day = another_date.getDate();
-let another_month = another_date.getMonth() + 1;
-let another_year = another_date.getFullYear();
+let today = date.getTime();
+let day_of_a_month = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
 let christmas;
-
-if (another_month === 12 && another_day > 24) {
-    christmas = new Date(`${another_year + 1}-12-24`)
-} else {
-    christmas = new Date(`${another_year}-12-24`)
-}
+(month === 12 && day_of_a_month > 24) ? christmas = new Date(`${year + 1}-12-24`) : christmas = new Date(`${year}-12-24`)
 
 let christmas_time = christmas.getTime();
-
-let seconds_left = today - christmas_time; scroll
-
+let seconds_left = today - christmas_time;
 let seconds_to_days = 1000 * 60 * 60 * 24;
-
 let days_left_to_christmas = Math.abs(Math.round(seconds_left / seconds_to_days))
 
 console.log(`${days_left_to_christmas} days till Christmas`)
 
-/*Write a JavaScript program to convert temperatures to and from Celsius, Fahrenheit.Go to the editor
+/* 4. Write a JavaScript program to convert temperatures to and from Celsius, Fahrenheit.Go to the editor
 [Formula : c / 5 = (f - 32) / 9[where c = temperature in Celsius and f = temperature in Fahrenheit ]
 Expected Output:
 60°C is 140 °F
@@ -72,9 +62,16 @@ temperature_converter_button.addEventListener("click", () => {
 
     let celsius_output = (5 * (fahrenheit_input - 32)) / 9
 
-    document.getElementById("celsius-to-fahrenheit").textContent = `Your degrees of Celsius (${celsius_input} °C) are this much ${fahrenheit_output} in Fahrenheit`
+    let paragraph_celsius = document.createElement("p");
+    let paragraph_fahrenheit = document.createElement("p");
 
-    document.getElementById("fahrenheit-to-celsius").textContent = `Your degrees of Fahrenheit (${fahrenheit_input} °F) are ${celsius_output} are this much in Celsius degrees`
+    let celsius_p = body.appendChild(paragraph_celsius);
+
+    let fahrenheit_p = body.appendChild(paragraph_fahrenheit);
+
+    celsius_p.textContent = `Your degrees of Celsius (${celsius_input} °C) are this much ${fahrenheit_output} °F in Fahrenheit`
+
+    fahrenheit_p.textContent = `Your degrees of Fahrenheit (${fahrenheit_input} °F) are this much ${celsius_output} °C are in Celsius degrees`
 
 })
 
